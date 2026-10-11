@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HourSync</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    body {
+        background: linear-gradient(to right, #021B79, #0003ff);
+        font-family: 'League Spartan', sans-serif;
+        color: white;
+        margin: 0;
+        padding-bottom: 100px;
+    }
+
+    .range {
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(to right, #021B79, #0003ff);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .range-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .hoursynclogo {
+        width: 60px;
+        height: auto;
+    }
+
+    .specialtext {
+        background-image: linear-gradient(45deg, #ff0000, #ffa100, #ff0000);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        display: inline-block;
+        vertical-align: middle; 
+        margin-bottom: 5px;
+        margin-left: 15px;
+        font-size: 32px;
+    }
+
+    .hoursyncinfo {
+        width: 40px;
+        height: auto;
+        margin-left: 0;
+    }
+
+    .contentdiv {
+        width: 95%;
+        padding: 20px;
+        background: linear-gradient(to right, #ff0000, #ffa100, #ff0000);
+        border-radius: 48px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+
+    .firstinfotext {
+        margin: 0;
+        color: #021B79;
+        font-size: clamp(40px, 8vw, 100px);
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .secondinfotext {
+        margin: 0;
+        color: #021B79;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+    }
+
+    .contentdivtwo {
+        width: 40%;
+        padding: 15px;
+        background: linear-gradient(to right, #ff0000, #ffa100, #ff0000);
+        border-radius: 48px;
+        margin-bottom: 30px;
+    }
+
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        background: linear-gradient(to right, #ff0000, #ffa100, #ff0000);
+        padding: 10px 10px 0 10px;
+        gap: 6px;
+        border-radius: 30px;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        width: fit-content;
+    }
+
+    .aba {
+        padding: 10px 20px;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px 8px 0 0;
+        transition: all 0.2s;
+    }
+
+    .aba:hover {
+        background: linear-gradient(to right, #ffa100, #ff0000, #ffa100);
+        color: white;
+        border-radius: 30px;
+        font-weight: bold;
+    }
+
+    .aba.ativa {
+        background: linear-gradient(to right, #ff0000, #ffa100, #ff0000);
+        color: white;
+        border-radius: 30px;
+        font-weight: bold;
+    }
+
+    .conteudo {
+        display: none;
+        width: 80%;
+        margin: 20px auto;
+        border-radius: 20px;
+    }
+
+    .conteudo.ativo {
+        display: block;
+    }
+
+    .textforinfo {
+        background-image: linear-gradient(45deg, #ff0000, #ffa100, #ff0000);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        display: inline-block;
+        font-size: 64px;
+    }
+
+    .timer-btn {
+        padding: 12px 24px;
+        font-family: 'League Spartan', sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        color: #021B79;
+        background: #ffa100;
+        transition: 0.2s;
+        margin: 5px;
+    }
+
+    .timer-btn:hover {
+        background: white;
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+        .contentdivtwo {
+            width: 85%;
+        }
+        .tabs {
+            width: 92%;
+            max-width: 100%;
+            justify-content: space-around;
+            padding: 6px 4px 0 4px;
+            box-sizing: border-box;
+        }
+        .aba {
+            padding: 8px 10px;
+            font-size: 12px;
+        }
+        h2 {
+            padding: 0 10px;
+            box-sizing: border-box;
+            word-break: break-word;
+        }
+    }
+</style>
+<body>
+    
+    <div class="range">
+        <div class="range-left">
+            <img class="hoursynclogo" src="Logos/HourSyncLogo.PNG" alt="Hour Sync Logo">
+            <h1 class="specialtext">HourSync</h1>
+        </div>
+
+        <a href="OQueEGmt.HTML">
+            <img class="hoursyncinfo" src="Logos/InfoLogo.PNG">
+        </a>
+    </div>
+
+    <div class="tabs">
+        <div class="aba ativa" onclick="trocar(event, 'pagina1')">Home</div>
+        <div class="aba" onclick="trocar(event, 'pagina2')">Time Zones</div>
+        <div class="aba" onclick="trocar(event, 'pagina3')">Timer</div>
+        <div class="aba" onclick="trocar(event, 'pagina4')">Stopwatch</div>
+        <div class="aba" onclick="trocar(event, 'pagina5')">Events</div>
+    </div>
+
+    <div id="pagina1" class="conteudo ativo">
+        <center>
+            <div class="contentdiv">
+                <h1 class="firstinfotext">
+                    What Time Is It?
+                </h1>
+            </div>
+        </center>
+
+        <center>
+            <div class="contentdivtwo">
+                <h4 class="secondinfotext">
+                    This site is the solution!
+                </h4>
+            </div>
+        </center>
+
+        <h1 class="textforinfo">
+            What is HourSync?
+        </h1>
+
+        <h2>
+            HourSync — Synchronize your time, connect your world.
+            Welcome to HourSync, the ultimate platform for anyone living at a global pace. Whether you are a remote professional coordinating international meetings, a travel enthusiast, or someone who values absolute precision in daily life, HourSync brings together all the time tools you need in a modern, fluid, and intelligent interface.
+            Discover the features that make HourSync your favorite temporal control panel:
+            Global Time Zones Area
+            The world never stops, and with HourSync, you can track every second anywhere on the planet.
+            Real-time tracking: Add cities from all over the world and instantly view their local time, the time difference relative to your zone, and whether day or night dominates that region.
+            Smart planning: Visualize exact conversions for international meetings or calls without surprises regarding time gaps.
+            High-Precision Stopwatch
+            Need to measure task duration with surgical precision? Our stopwatch is engineered for maximum performance.
+            Laps: Record split times and analyze your performance in workouts, studies, or projects.
+            Minimalist and responsive design: Zero distractions, just numbers running with millisecond accuracy.
+            Customizable Timer
+            Maintain your focus and manage your breaks with the HourSync Timer.
+            Intuitive countdown: Perfect for productivity techniques like the Pomodoro Technique, study sessions, cooking, or quick alarms.
+            Visual and audio alerts: Never lose track of time when deep in focus mode.
+            Interactive Demonstration Map
+            Understand time visually. Our interactive map displays the Earth's time zone divisions in real time.
+            Global timeline: Observe how day and night divide across the globe and quickly discover the time zone of any region just by browsing the map.
+            Fullscreen Demonstration Area
+            Turn any display into an impressive, standout clock.
+            Immersive mode: Ideal for classrooms, offices, presentations, kitchens, or running on a secondary monitor while you work.
+            Clean visualization: Hides all secondary elements and focuses solely on the current time with large, elegant numbers.
+            Next Step
+            HourSync is designed to keep you synchronized with what matters.
+        </h2>
+    </div>
+
+    <div id="pagina2" class="conteudo">
+        <center>
+            <div class="contentdiv">
+                <h1 class="firstinfotext">
+                    Time Zones
+                </h1>
+            </div>
+        </center>
+
+        <center>
+            <div style="background: linear-gradient(to right, #0003ff, #021B79); width: 95%; padding: 20px; border-radius: 48px; margin-bottom: 20px; border: 2px solid #ffa100; box-sizing: border-box;">
+                <label for="timezone-select" style="font-family: 'Montserrat', sans-serif; display: block; margin-bottom: 10px; color: #ffa100; font-weight: bold;">Select a City/Timezone</label>
+                <select id="timezone-select" style="width: 100%; padding: 12px; border-radius: 10px; border: none; font-family: 'League Spartan', sans-serif; font-size: 18px; background: white; color: #021B79; cursor: pointer; box-sizing: border-box;"></select>
+            </div>
+        </center>
+
+        <center>
+            <div class="contentdiv" style="background: linear-gradient(to right, #0003ff, #021B79); border: 2px solid #ffa100;">
+                <h2 id="selected-timezone-title" style="font-family: 'Montserrat', sans-serif; font-size: 20px; margin: 0 0 10px 0; color: #ffa100;">Local Time</h2>
+                <h1 id="clock-display" class="firstinfotext" style="font-size: clamp(40px, 10vw, 80px); color: white;">00:00:00</h1>
+                <p id="date-display" class="secondinfotext" style="font-size: 20px; color: white;">Loading...</p>
+            </div>
+        </center>
+    </div>
+
+    <div id="pagina3" class="conteudo">
+        <center>
+            <div class="contentdiv">
+                <h1 class="firstinfotext">
+                    Timer
+                </h1>
+            </div>
+        </center>
+
+        <center>
+            <div class="contentdiv" style="background: linear-gradient(to right, #0003ff, #021B79); border: 2px solid #ffa100;">
+                <h2 style="font-family: 'Montserrat', sans-serif; font-size: 20px; margin: 0 0 10px 0; color: #ffa100;">Countdown</h2>
+                <h1 id="timer-display" class="firstinfotext" style="font-size: clamp(40px, 10vw, 80px); color: white;">00:05:00.00</h1>
+                
+                <div style="margin: 15px 0;">
+                    <input type="number" id="timer-hours" placeholder="Hor" min="0" max="23" value="0" style="width: 60px; padding: 10px; font-size: 18px; text-align: center; border-radius: 8px; border: none;">
+                    <span style="font-size: 24px; font-weight: bold; color: white; margin: 0 2px;">:</span>
+                    <input type="number" id="timer-minutes" placeholder="Min" min="0" max="59" value="5" style="width: 60px; padding: 10px; font-size: 18px; text-align: center; border-radius: 8px; border: none;">
+                    <span style="font-size: 24px; font-weight: bold; color: white; margin: 0 2px;">:</span>
+                    <input type="number" id="timer-seconds" placeholder="Sec" min="0" max="59" value="0" style="width: 60px; padding: 10px; font-size: 18px; text-align: center; border-radius: 8px; border: none;">
+                </div>
+
+                <div>
+                    <div style="display: inline-block;">
+                        <button id="start-timer" class="timer-btn" style="background: linear-gradient(to right, green, lightgreen); color: white;">Iniciar</button>
+                        <button id="pause-timer" class="timer-btn" style="background: linear-gradient(to right, yellow, lightyellow); color: black;">Pausar</button>
+                        <button id="stop-timer" class="timer-btn" style="background: linear-gradient(to right, red, #ff5858); color: white;">Reiniciar</button>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+
+    <div id="pagina4" class="conteudo">
+        <center>
+            <div class="contentdiv">
+                <h1 class="firstinfotext">
+                    Stopwatch
+                </h1>
+            </div>
+        </center>
+
+        <center>
+            <div class="contentdiv" style="background: linear-gradient(to right, #0003ff, #021B79); border: 2px solid #ffa100;">
+                <h2 style="font-family: 'Montserrat', sans-serif; font-size: 20px; margin: 0 0 10px 0; color: #ffa100;">Precision</h2>
+                <h1 id="stopwatch-display" class="firstinfotext" style="font-size: clamp(40px, 10vw, 80px); color: white;">00:00:00.00</h1>
+                
+                <div>
+                    <div style="display: inline-block;">
+                        <button id="start-stopwatch" class="timer-btn" style="background: linear-gradient(to right, green, lightgreen); color: white;">Iniciar</button>
+                        <button id="pause-stopwatch" class="timer-btn" style="background: linear-gradient(to right, yellow, lightyellow); color: black;">Pausar</button>
+                        <button id="stop-stopwatch" class="timer-btn" style="background: linear-gradient(to right, red, #ff5858); color: white;">Reiniciar</button>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+    
+    <div id="pagina5" class="conteudo">
+        <center>
+            <div class="contentdiv">
+                <h1 class="firstinfotext">
+                    Events
+                </h1>
+            </div>
+        </center>
+
+        <center>
+            <div class="contentdiv" style="background: linear-gradient(to right, #0003ff, #021B79); border: 2px solid #ffa100;">
+                <h2 style="font-family: 'Montserrat', sans-serif; font-size: 20px; margin: 0 0 10px 0; color: #ffa100;">Add New Event</h2>
+                
+                <div style="margin: 15px 0; display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                    <input type="text" id="event-name" placeholder="Event Name" style="width: 80%; max-width: 300px; padding: 10px; font-size: 16px; border-radius: 8px; border: none; font-family: 'League Spartan', sans-serif;">
+                    <input type="datetime-local" id="event-date" style="width: 80%; max-width: 300px; padding: 10px; font-size: 16px; border-radius: 8px; border: none; font-family: 'League Spartan', sans-serif;">
+                </div>
+
+                <div>
+                    <div style="display: inline-block;">
+                        <button id="add-event-btn" class="timer-btn" style="background: linear-gradient(to right, green, lightgreen); color: white;">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </center>
+
+        <div id="events-container"></div>
+    </div>
+
+    <script>
+        function trocar(event, id) {
+            document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
+            document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('ativo'));
+            document.getElementById(id).classList.add('ativo');
+            event.target.classList.add('ativa');
+        }
+
+        const timeZones = Intl.supportedValuesOf('timeZone');
+        const selectElement = document.getElementById('timezone-select');
+
+        if (selectElement) {
+            timeZones.forEach(tz => {
+                const option = document.createElement('option');
+                option.value = tz;
+                option.textContent = tz.replace(/_/g, ' ');
+                
+                if (tz === Intl.DateTimeFormat().resolvedOptions().timeZone) {
+                    option.selected = true;
+                }
+                
+                selectElement.appendChild(option);
+            });
+
+            function updateClock() {
+                const selectedTz = selectElement.value;
+                
+                const timeOptions = {
+                    timeZone: selectedTz,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                };
+                
+                const dateOptions = {
+                    timeZone: selectedTz,
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+
+                try {
+                    const currentTime = new Intl.DateTimeFormat('en-US', timeOptions).format(new Date());
+                    const currentDate = new Intl.DateTimeFormat('en-US', dateOptions).format(new Date());
+
+                    const clockDisplay = document.getElementById('clock-display');
+                    const dateDisplay = document.getElementById('date-display');
+                    const titleDisplay = document.getElementById('selected-timezone-title');
+
+                    if (clockDisplay) clockDisplay.textContent = currentTime;
+                    if (dateDisplay) dateDisplay.textContent = currentDate;
+                    if (titleDisplay) titleDisplay.textContent = `Time in ${selectedTz.replace(/_/g, ' ')}`;
+                } catch (e) {
+                    console.error("Invalid time zone", e);
+                }
+            }
+
+            setInterval(updateClock, 1000);
+            selectElement.addEventListener('change', updateClock);
+            updateClock();
+        }
+
+        let timerInterval = null;
+        let totalMilliseconds = 300000;
+
+        const timerDisplay = document.getElementById('timer-display');
+        const hourInput = document.getElementById('timer-hours');
+        const minInput = document.getElementById('timer-minutes');
+        const secInput = document.getElementById('timer-seconds');
+        const startBtn = document.getElementById('start-timer');
+        const pauseBtn = document.getElementById('pause-timer');
+        const stopBtn = document.getElementById('stop-timer');
+
+        function updateTimerDisplay() {
+            const totalSeconds = Math.floor(totalMilliseconds / 1000);
+            const h = Math.floor(totalSeconds / 3600);
+            const m = Math.floor((totalSeconds % 3600) / 60);
+            const s = totalSeconds % 60;
+            const ms = Math.floor((totalMilliseconds % 1000) / 10);
+            timerDisplay.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(ms).padStart(2, '0')}`;
+        }
+
+        function setTimeFromInputs() {
+            const h = parseInt(hourInput.value) || 0;
+            const m = parseInt(minInput.value) || 0;
+            const s = parseInt(secInput.value) || 0;
+            totalMilliseconds = ((h * 3600) + (m * 60) + s) * 1000;
+            updateTimerDisplay();
+        }
+
+        hourInput.addEventListener('change', setTimeFromInputs);
+        minInput.addEventListener('change', setTimeFromInputs);
+        secInput.addEventListener('change', setTimeFromInputs);
+
+        startBtn.addEventListener('click', () => {
+            if (timerInterval) return;
+            if (totalMilliseconds <= 0) setTimeFromInputs();
+
+            let lastTime = Date.now();
+
+            timerInterval = setInterval(() => {
+                const now = Date.now();
+                const elapsed = now - lastTime;
+                lastTime = now;
+
+                if (totalMilliseconds > elapsed) {
+                    totalMilliseconds -= elapsed;
+                    updateTimerDisplay();
+                } else {
+                    totalMilliseconds = 0;
+                    updateTimerDisplay();
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    alert('O tempo do Timer acabou!');
+                }
+            }, 10);
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        });
+
+        stopBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            setTimeFromInputs();
+        });
+
+        let stopwatchInterval = null;
+        let stopwatchTime = 0;
+
+        const stopwatchDisplay = document.getElementById('stopwatch-display');
+        const startStopwatchBtn = document.getElementById('start-stopwatch');
+        const pauseStopwatchBtn = document.getElementById('pause-stopwatch');
+        const stopStopwatchBtn = document.getElementById('stop-stopwatch');
+
+        function updateStopwatchDisplay() {
+            const totalSeconds = Math.floor(stopwatchTime / 1000);
+            const h = Math.floor(totalSeconds / 3600);
+            const m = Math.floor((totalSeconds % 3600) / 60);
+            const s = totalSeconds % 60;
+            const ms = Math.floor((stopwatchTime % 1000) / 10);
+            
+            stopwatchDisplay.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(ms).padStart(2, '0')}`;
+        }
+
+        startStopwatchBtn.addEventListener('click', () => {
+            if (stopwatchInterval) return;
+
+            let lastTime = Date.now();
+
+            stopwatchInterval = setInterval(() => {
+                const now = Date.now();
+                const elapsed = now - lastTime;
+                lastTime = now;
+
+                stopwatchTime += elapsed;
+                updateStopwatchDisplay();
+            }, 10);
+        });
+
+        pauseStopwatchBtn.addEventListener('click', () => {
+            clearInterval(stopwatchInterval);
+            stopwatchInterval = null;
+        });
+
+        stopStopwatchBtn.addEventListener('click', () => {
+            clearInterval(stopwatchInterval);
+            stopwatchInterval = null;
+            stopwatchTime = 0;
+            updateStopwatchDisplay();
+        });
+
+        let events = JSON.parse(localStorage.getItem('hoursync_events')) || [];
+        
+        const eventNameInput = document.getElementById('event-name');
+        const eventDateInput = document.getElementById('event-date');
+        const addEventBtn = document.getElementById('add-event-btn');
+        const eventsContainer = document.getElementById('events-container');
+
+        function saveEvents() {
+            localStorage.setItem('hoursync_events', JSON.stringify(events));
+        }
+
+        addEventBtn.addEventListener('click', () => {
+            const name = eventNameInput.value.trim();
+            const dateValue = eventDateInput.value;
+
+            if (!name || !dateValue) {
+                alert('Por favor, preencha o nome e a data do evento.');
+                return;
+            }
+
+            const eventObj = {
+                id: Date.now(),
+                name: name,
+                targetTime: new Date(dateValue).getTime()
+            };
+
+            events.push(eventObj);
+            saveEvents();
+            eventNameInput.value = '';
+            eventDateInput.value = '';
+            renderEvents();
+        });
+
+        function renderEvents() {
+            eventsContainer.innerHTML = '';
+            events.forEach(ev => {
+                const centerEl = document.createElement('center');
+                centerEl.innerHTML = `
+                    <div class="contentdiv" style="background: linear-gradient(to right, #0003ff, #021B79); border: 2px solid #ffa100;">
+                        <h2 style="font-family: 'Montserrat', sans-serif; font-size: 20px; margin: 0 0 10px 0; color: #ffa100;">${ev.name}</h2>
+                        <h1 id="ev-time-${ev.id}" class="firstinfotext" style="font-size: clamp(30px, 6vw, 60px); color: white;">00d 00h 00m 00s</h1>
+                        <div>
+                            <div style="display: inline-block;">
+                                <button onclick="removeEvent(${ev.id})" class="timer-btn" style="background: linear-gradient(to right, red, #ff5858); color: white;">Excluir</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                eventsContainer.appendChild(centerEl);
+            });
+        }
+
+        function removeEvent(id) {
+            const index = events.findIndex(ev => ev.id === id);
+            if (index !== -1) {
+                events.splice(index, 1);
+                saveEvents();
+                renderEvents();
+            }
+        }
+
+        renderEvents();
+
+        setInterval(() => {
+            const now = Date.now();
+            events.forEach(ev => {
+                const diff = ev.targetTime - now;
+                const displayEl = document.getElementById(`ev-time-${ev.id}`);
+                if (!displayEl) return;
+
+                if (diff <= 0) {
+                    displayEl.textContent = "O evento chegou!";
+                } else {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    displayEl.textContent = `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+                }
+            });
+        }, 1000);
+    </script>
+</body>
+</html>

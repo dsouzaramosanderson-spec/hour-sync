@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    body {
+        background: linear-gradient(to right, #021B79, #0003ff);
+        font-family: 'League Spartan', sans-serif;
+        color: white;
+        margin: 0;
+        padding-bottom: 100px;
+    }
+
+    .range {
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(to right, #021B79, #0003ff);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .range-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .hoursynclogo {
+        width: 60px;
+        height: auto;
+    }
+
+    .specialtext {
+        background-image: linear-gradient(45deg, #ff0000, #ffa100, #ff0000);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        display: inline-block;
+        vertical-align: middle; 
+        margin-bottom: 5px;
+        margin-left: 15px;
+        font-size: 32px;
+    }
+
+    .textforinfo {
+        background-image: linear-gradient(45deg, #ff0000, #ffa100, #ff0000);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        display: inline-block;
+        font-size: 64px;
+        margin-left: 50px
+    }
+
+    .textforinfotwo {
+        margin-left: 50px;
+    }
+</style>
+<body>
+    
+    <div class="range">
+        <div class="range-left">
+            <img class="hoursynclogo" src="Logos/HourSyncLogo.PNG" alt="Hour Sync Logo">
+            <h1 class="specialtext">HourSync</h1>
+        </div>
+    </div>
+    
+    <h1 class="textforinfo">
+        What is a time zone?
+    </h1>
+
+    <h2 class="textforinfotwo">
+        What is a Time Zone? A Comprehensive Guide
+A time zone is a region of the globe that observes a uniform standard time for legal, commercial, and social purposes. Rather than forcing every single location on Earth to experience the exact same clock time (which would mean noon occurs in the dead of night in half the world), time zones divide the planet longitudinally to ensure that local time roughly corresponds to the position of the Sun in the sky (solar time).
+1. The Historical and Scientific Context
+To truly understand time zones, it helps to look at both the Earth's geometry and human history.
+Earth's Rotation: The Earth completes one full rotation on its axis every 24 hours. Because a sphere contains 360 degrees of longitude, the Earth rotates 15 degrees every hour (360 
+∘
+ /24=15 
+∘
+ ).
+Local Solar Time: Before the 19th century, every town kept its own local time based on the exact moment the Sun reached its highest point overhead (solar noon). As you traveled just a few miles east or west, clocks would differ by a few minutes.
+The Railway Revolution: This decentralized system became unmanageable with the invention of the steam locomotive and the telegraph. Trains traveling across countries required synchronized schedules to prevent collisions. Consequently, standardized time zones were officially adopted globally during the late 19th and early 20th centuries, heavily anchored by Greenwich Mean Time (GMT) as the global reference point.
+2. How Time Zones Work: Coordinated Universal Time (UTC)
+Today, the global timekeeping standard is UTC (Coordinated Universal Time). Time zones are expressed as positive or negative offsets from UTC (e.g., UTC+2, UTC-5).
+The Prime Meridian: The baseline for time zones is the Prime Meridian (0 
+∘
+  longitude), which passes through the Royal Observatory in Greenwich, London. This is often referred to as GMT (though GMT is a time zone, while UTC is the atomic time standard used to regulate clocks).
+Offsets: Moving eastward from Greenwich adds hours (+1 hour for every 15 
+∘
+  of longitude), while moving westward subtracts hours (−1 hour for every 15 
+∘
+ ). For instance, if it is 12:00 PM (noon) in London (UTC+0), it is 5:00 AM in New York (UTC-5) and 9:00 PM in Sydney (UTC+10).
+3. Real-World Complexities: Borders and Politics
+While time zones are scientifically rooted in lines of longitude, in practice, they rarely follow straight lines. Political boundaries, economic partnerships, and geographical convenience heavily dictate time zone shapes.
+Country and State Boundaries: Entire countries or states often choose to stay within a single time zone for administrative unity, even if their geographical span covers multiple 15 
+∘
+  longitudinal slices. For example, China spans a geographical width that would naturally encompass five different time zones, but the entire country operates under a single time zone (Beijing Time, UTC+8).
+Daylight Saving Time (DST): Many regions around the world adjust their clocks forward by one hour during the warmer spring and summer months to extend evening daylight, returning to standard time in the autumn. This introduces shifting offsets (e.g., a region might switch from UTC-5 to UTC-4).
+4. Why Time Zones Matter in the Digital Age (Like in Programming!)
+For modern software developers and digital creators—especially when building applications like scheduling tools, calendars, or global platforms (hint: like an app named HourSync!)—handling time zones correctly is one of the most critical and complex challenges.
+Global Synchronization: When users from different parts of the world interact, collaborate, or schedule meetings, code must convert local user times into a universal format (like UTC) and then accurately translate them back into the local time of each participant.
+The Pitfalls: Ignoring time zones leads to severe bugs, missed meetings, incorrect data logging, and fragmented user experiences.
+Follow-up Question
+Are you currently working on handling time zones or scheduling logic for your HourSync project, and do you need help implementing that in your code?
+    </h2>
+
+    <script>
+        function trocar(event, id) {
+            document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
+            document.querySelectorAll('.conteudo').forEach(c => c.classList.remove('ativo'));
+            document.getElementById(id).classList.add('ativo');
+                event.target.classList.add('ativa');
+        }
+    </script>
+</body>
+</html>
